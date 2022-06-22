@@ -27,7 +27,6 @@ test('click to enable button',async ()=>{
     expect(buttonEle).toBeDisabled();
 });
 
-/*
 test("popover on hover",async ()=>{
     const user = userEvent.setup();
 
@@ -37,8 +36,9 @@ test("popover on hover",async ()=>{
     const chkboxEle = screen.getByRole("checkbox",{name:/terms and conditions/i});
     await user.hover(chkboxEle);
 
-    const popoverEl = screen.getByTestId('termsandconditions-popover');    
+    //const popoverEl = screen.getByTestId('termsandconditions-popover');    
     //const popoverEl = screen.getByRole("tooltip");
+    const popoverEl = screen.getByText(/no ice cream will actually be delivered/i);     
     await waitFor(()=>expect(popoverEl).toBeInTheDocument());
 
     await user.unhover(chkboxEle);
@@ -46,5 +46,5 @@ test("popover on hover",async ()=>{
     expect(popoverElagain).not.toBeInTheDocument();
     
 });
-*/
+
 
