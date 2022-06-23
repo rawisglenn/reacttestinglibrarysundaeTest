@@ -27,22 +27,23 @@ test('click to enable button',async ()=>{
     expect(buttonEle).toBeDisabled();
 });
 
+
 test("popover on hover",async ()=>{
     const user = userEvent.setup();
 
     const popoverElpre = screen.queryByText(/no ice cream will actually be delivered/i);    
     expect(popoverElpre).not.toBeInTheDocument();
 
-    const chkboxEle = screen.getByRole("checkbox",{name:/terms and conditions/i});
+    const chkboxEle = screen.getByText(/terms and conditions/i);
     await user.hover(chkboxEle);
 
-    //const popoverEl = screen.getByTestId('termsandconditions-popover');    
-    //const popoverEl = screen.getByRole("tooltip");
+
     const popoverEl = screen.getByText(/no ice cream will actually be delivered/i);     
-    await waitFor(()=>expect(popoverEl).toBeInTheDocument());
+    //await waitFor(()=>expect(popoverEl).toBeInTheDocument());
+    expect(popoverEl).toBeInTheDocument();
 
     await user.unhover(chkboxEle);
-    const popoverElagain = screen.getByText(/no ice cream will actually be delivered/i);
+    const popoverElagain = screen.queryByText(/no ice cream will actually be delivered/i);
     expect(popoverElagain).not.toBeInTheDocument();
     
 });
